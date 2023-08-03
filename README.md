@@ -72,10 +72,10 @@ import (
   "log"
   "net/http"
 
-  "github.com/lestrrat-go/libxml2"
-  "github.com/lestrrat-go/libxml2/parser"
-  "github.com/lestrrat-go/libxml2/types"
-  "github.com/lestrrat-go/libxml2/xpath"
+  "github.com/cptaffe/go-libxml2"
+  "github.com/cptaffe/go-libxml2/parser"
+  "github.com/cptaffe/go-libxml2/types"
+  "github.com/cptaffe/go-libxml2/xpath"
 )
 
 func ExampleXML() {
@@ -153,8 +153,8 @@ import (
   "os"
   "path/filepath"
 
-  "github.com/lestrrat-go/libxml2"
-  "github.com/lestrrat-go/libxml2/xsd"
+  "github.com/cptaffe/go-libxml2"
+  "github.com/cptaffe/go-libxml2/xsd"
 )
 
 func ExampleXSD() {
@@ -212,7 +212,7 @@ BenchmarkXmlpathXmlpath-4     500000         11737 ns/op         721 B/op       
 BenchmarkLibxml2Xmlpath-4    1000000          7627 ns/op         368 B/op         15 allocs/op
 BenchmarkEncodingXMLDOM-4    2000000          4079 ns/op        4560 B/op          9 allocs/op
 BenchmarkLibxml2DOM-4        1000000         11454 ns/op         264 B/op          7 allocs/op
-ok      github.com/lestrrat-go/libxml2  37.597s
+ok      github.com/cptaffe/go-libxml2  37.597s
 ```
 
 ## FAQ

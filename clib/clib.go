@@ -1,5 +1,4 @@
 /*
-
 Package clib holds all of the dirty C interaction for go-libxml2.
 
 Although this package is visible to the outside world, the API in this
@@ -16,7 +15,6 @@ Please DO NOT rely on this API and expect that it will keep backcompat.
 When the need arises, it WILL be changed, and if you are not ready
 for it, your code WILL break in horrible horrible ways. You have been
 warned.
-
 */
 package clib
 
@@ -343,8 +341,8 @@ import (
 	"unicode/utf8"
 	"unsafe"
 
-	"github.com/lestrrat-go/libxml2/internal/debug"
-	"github.com/lestrrat-go/libxml2/internal/option"
+	"github.com/cptaffe/go-libxml2/internal/debug"
+	"github.com/cptaffe/go-libxml2/internal/option"
 	"github.com/pkg/errors"
 )
 
