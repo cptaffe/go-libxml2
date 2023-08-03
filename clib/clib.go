@@ -35,6 +35,7 @@ package clib
 #include <libxml/c14n.h>
 #include <libxml/xmlschemas.h>
 #include <libxml/schemasInternals.h>
+#include <libxml/tree.h>
 
 static inline void MY_nilErrorHandler(void *ctx, const char *msg, ...) {}
 
@@ -894,6 +895,18 @@ func XMLNodeValue(n PtrSource) (string, error) {
 		panic("unimplmented")
 	}
 
+	return s, nil
+}
+
+func XMLNodeGetContent(n PtrSource) (string, error) {
+	nptr, err := validNodePtr(n)
+	if err != nil {
+		return "", err
+	}
+
+	xc := C.xmlNodeGetContent(nptr)
+	s := xmlCharToString(xc)
+	C.MY_xmlFree(unsafe.Pointer(xc))
 	return s, nil
 }
 

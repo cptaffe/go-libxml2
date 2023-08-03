@@ -38,6 +38,14 @@ func (n *XMLNode) String() string {
 	return n.ToString(0, false)
 }
 
+func (n *XMLNode) Content() string {
+	s, err := clib.XMLNodeGetContent(n)
+	if err != nil {
+		return ""
+	}
+	return s
+}
+
 // OwnerDocument returns the Document that this node belongs to
 func (n *XMLNode) OwnerDocument() (types.Document, error) {
 	ptr, err := clib.XMLOwnerDocument(n)

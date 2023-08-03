@@ -103,6 +103,7 @@ type Node interface {
 	String() string
 	TextContent() string
 	ToString(int, bool) string
+	Content() string
 	Walk(func(Node) error) error
 
 	MakeMortal()

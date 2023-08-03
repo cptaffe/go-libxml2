@@ -131,6 +131,11 @@ func (d *Document) TextContent() string {
 	return clib.XMLTextContent(d)
 }
 
+// Content always returns an empty string for Document
+func (d *Document) Content() string {
+	return ""
+}
+
 // ToString is currently just an alias to Dump(false)
 func (d *Document) ToString(x int, b bool) string {
 	return d.Dump(b)
