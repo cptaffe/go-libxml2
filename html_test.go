@@ -9,7 +9,7 @@ import (
 )
 
 func TestParseHTML(t *testing.T) {
-	doc, err := libxml2.ParseHTMLString(`<html><body><h1>Hello, World!</h1><p>Lorem Ipsum</p></body></html>`)
+	doc, err := libxml2.ParseHTMLString(`<html><body><h1>Hello, World!</h1><p>Lorem Ipsum</p></body></html>`, "")
 	if err != nil {
 		t.Errorf("Failed to parse: %s", err)
 		return

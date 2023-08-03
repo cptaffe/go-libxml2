@@ -49,12 +49,13 @@ func ExampleXML() {
 }
 
 func ExampleHTML() {
-	res, err := http.Get("http://golang.org")
+	url := "http://golang.org"
+	res, err := http.Get(url)
 	if err != nil {
 		panic("failed to get golang.org: " + err.Error())
 	}
 
-	doc, err := libxml2.ParseHTMLReader(res.Body)
+	doc, err := libxml2.ParseHTMLReader(res.Body, url, "")
 	if err != nil {
 		panic("failed to parse HTML: " + err.Error())
 	}

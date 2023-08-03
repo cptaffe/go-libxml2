@@ -537,22 +537,18 @@ func XMLFreeParserCtxt(ctx PtrSource) error {
 	return nil
 }
 
-func HTMLReadDoc(content, url, encoding string, opts int) (uintptr, error) {
-	// TODO: use htmlCtxReadDoc later, so we can get the error
-	ccontent := C.CString(content)
+func HTMLReadDoc(content []byte, url, encoding string, opts int) (uintptr, error) {
 	curl := C.CString(url)
 	cencoding := C.CString(encoding)
-	defer C.free(unsafe.Pointer(ccontent))
 	defer C.free(unsafe.Pointer(curl))
 	defer C.free(unsafe.Pointer(cencoding))
 
 	doc := C.htmlReadDoc(
-		(*C.xmlChar)(unsafe.Pointer(ccontent)),
+		(*C.xmlChar)(unsafe.Pointer(&content[0])),
 		curl,
 		cencoding,
 		C.int(opts),
 	)
-
 	if doc == nil {
 		return 0, errors.New("failed to parse document")
 	}

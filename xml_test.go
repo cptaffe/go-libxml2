@@ -122,7 +122,7 @@ func TestRegressionGH7(t *testing.T) {
     1234
 </div>
 </body>
-</html>`)
+</html>`, "")
 
 	if !assert.NoError(t, err, "ParseHTMLString should succeed") {
 		return

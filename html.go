@@ -11,22 +11,20 @@ import (
 	"github.com/pkg/errors"
 )
 
-// ParseHTML parses an HTML document. You can omit the options
-// argument, or you can provide one bitwise-or'ed option
-func ParseHTML(content []byte, options ...parser.HTMLOption) (types.Document, error) {
-	return ParseHTMLString(string(content), options...)
+func ParseHTMLString(content, url string, options ...parser.HTMLOption) (types.Document, error) {
+	return ParseHTML([]byte(content), url, "UTF-8", options...)
 }
 
-// ParseHTMLString parses an HTML document. You can omit the options
+// ParseHTML parses an HTML document. You can omit the options
 // argument, or you can provide one bitwise-or'ed option
-func ParseHTMLString(content string, options ...parser.HTMLOption) (types.Document, error) {
+func ParseHTML(content []byte, url, encoding string, options ...parser.HTMLOption) (types.Document, error) {
 	var option parser.HTMLOption
 	if len(options) > 0 {
 		option = options[0]
 	} else {
 		option = parser.DefaultHTMLOptions
 	}
-	docptr, err := clib.HTMLReadDoc(content, "", "", int(option))
+	docptr, err := clib.HTMLReadDoc(content, url, encoding, int(option))
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to read document")
 	}
@@ -39,11 +37,11 @@ func ParseHTMLString(content string, options ...parser.HTMLOption) (types.Docume
 
 // ParseHTMLReader parses an HTML document. You can omit the options
 // argument, or you can provide one bitwise-or'ed option
-func ParseHTMLReader(in io.Reader, options ...parser.HTMLOption) (types.Document, error) {
+func ParseHTMLReader(in io.Reader, url, encoding string, options ...parser.HTMLOption) (types.Document, error) {
 	buf := &bytes.Buffer{}
 	if _, err := buf.ReadFrom(in); err != nil {
 		return nil, errors.Wrap(err, "failed to rea from io.Reader")
 	}
 
-	return ParseHTMLString(buf.String(), options...)
+	return ParseHTML(buf.Bytes(), url, encoding, options...)
 }
